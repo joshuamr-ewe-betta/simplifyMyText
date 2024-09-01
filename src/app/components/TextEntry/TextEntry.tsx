@@ -11,7 +11,9 @@ export function TextEntry() {
     <div className={classes['text-entry']}>
       <div className={classes['text-entry-content']}>
         <div className={classes['text-entry-header']}>
-          <h6 className={classes.directions}>Write or paste in your text</h6>
+          <h6 className={classes.directions}>
+            Write or paste in your text (no more than 2000 characters)
+          </h6>
           <button
             type="button"
             className={classes['text-entry-button']}
@@ -33,9 +35,15 @@ export function TextEntry() {
         type="button"
         className={classes['simplify-language-button']}
         onClick={() => {}}
+        disabled={textEntered.length > 2000}
       >
         Simplify Language
       </button>
+      {textEntered.length > 2000 && (
+        <p className={classes.invalid}>
+          Please limit your input to less than 2000 characters
+        </p>
+      )}
       <p className={classes.disclaimer}>
         Your text is not stored, and is discarded after processing.
       </p>

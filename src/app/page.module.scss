@@ -1,17 +1,41 @@
 @import 'src/styles/variables';
 
 .main {
-  min-height: calc(100vh - 155px);
+  min-height: calc(100vh - 165px);
   box-sizing: border-box;
   font-size: 16px;
   font-weight: 300;;
+  position: relative;
 
-  .invalid {
-    height: calc(100vh - 155px);
-    background: white;
-    color: $primary-blue;
-    display: flex;
-    align-items: center;
-    padding: 2rem;
+  @media  (max-width: 1000px) {
+    min-height: calc(100vh - 155px);
+  }
+
+  @media  (max-width: 700px) {
+    min-height: calc(100vh - 145px);
+  }
+
+  &-content {
+    @media  (max-width: 500px) {
+      display: none;
+    }
+  }
+
+  &-mobile-protection {
+    min-height: calc(100vh - 145px);
+    position: absolute;
+    display: none;
+  
+    @media  (max-width: 500px) {
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+      min-height: calc(100vh - 145px);
+      background-color: white;
+      color: $primary-blue
+    }
   }
 }
+
+

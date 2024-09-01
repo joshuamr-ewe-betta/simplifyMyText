@@ -33,7 +33,7 @@
             border-top-left-radius: 8px;
         }
         & > *:last-child {
-            min-height: 400px;
+            min-height: 300px;
             border-bottom-right-radius: 8px;
             border-bottom-left-radius: 8px;
         }
@@ -56,10 +56,20 @@
     border: none;
     border-radius: 4px;
     margin-top: 2rem;
+    font-size: 1.4rem;
+
+    &:disabled {
+        cursor:not-allowed;
+    }
 }
 
 .disclaimer {
     margin-top: 2rem;
     font-size: 14px;
     color: white;
+}
+
+.invalid {
+    margin-top: 0.5rem;
+    color: red;
 }
