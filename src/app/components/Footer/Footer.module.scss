@@ -1,0 +1,13 @@
+@import 'src/styles/mixins';
+
+.footer {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+
+    &-text {
+        @include body-content;
+        font-size: 12px;
+    }
+}

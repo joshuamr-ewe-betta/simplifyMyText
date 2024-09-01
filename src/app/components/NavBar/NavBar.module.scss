@@ -1,0 +1,49 @@
+@import 'src/styles/variables';
+
+.header {
+    padding: 1.5rem 0;
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    background-color: $header-white;
+    align-items: center;
+
+    @media screen and (max-width: 1000px) {
+        justify-content: space-between;
+        padding: 1.5rem 1rem;
+    }
+}
+
+.navigation {
+    display: flex;
+    gap: 3rem;
+    list-style-type: none;
+
+    @media screen and (max-width: 1000px) {
+        gap: 1rem;
+    }
+    @media screen and (max-width: 700px) {
+        gap: 0.7rem;
+    }
+}
+
+.title {
+    color: $primary-blue;
+
+    @media screen and (max-width: 1000px) {
+        font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 700px) {
+        font-size: 1rem;
+    }
+}
+
+.link {
+    color: $link-gray;
+    cursor: pointer;
+    
+    @media screen and (max-width: 700px) {
+        font-size: 0.9rem;
+    }
+}

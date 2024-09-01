@@ -1,0 +1,21 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.text-block {
+    padding: 2rem 0;
+    background-color: white;
+    color: black;
+    @include body-content;
+
+    &-title {
+        color: $primary-blue;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &-subheader {
+        font-weight: 700;
+    }
+
+
+}
