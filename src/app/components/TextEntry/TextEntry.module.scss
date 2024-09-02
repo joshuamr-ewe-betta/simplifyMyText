@@ -28,14 +28,10 @@
         width: 100%;
         color: black;
 
-        & > *:first-child {
-            border-top-right-radius: 8px;
-            border-top-left-radius: 8px;
-        }
+        @include quill;
+
         & > *:last-child {
             min-height: 300px;
-            border-bottom-right-radius: 8px;
-            border-bottom-left-radius: 8px;
         }
     }
 

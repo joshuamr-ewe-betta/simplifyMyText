@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.feedback {
+    width: 100%;
+    @include body-content;
+
+    &-select {
+        margin-top: 0.5rem;
+        width: 300px;
+
+    }
+}

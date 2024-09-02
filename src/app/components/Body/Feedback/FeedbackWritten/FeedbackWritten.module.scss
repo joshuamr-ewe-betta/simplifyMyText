@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.feedback-written {
+    margin-top: 1rem;
+    &-textarea {
+        border-radius: 5px;;
+        width: 100%;
+        font: serif;
+
+        @include quill;
+    }
+}

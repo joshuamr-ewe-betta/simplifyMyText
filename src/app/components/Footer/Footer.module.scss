@@ -5,6 +5,8 @@
     padding: 2rem 0;
     display: flex;
     justify-content: center;
+    background-color: black;
+    color: white;
 
     &-text {
         @include body-content;

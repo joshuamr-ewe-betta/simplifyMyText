@@ -5,7 +5,11 @@ import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
 
-export function TextEntry() {
+export function TextEntry({
+  submitText,
+}: {
+  submitText: (newText: string) => void;
+}) {
   const [textEntered, setTextEntered] = useState('');
   return (
     <div className={classes['text-entry']}>
@@ -34,10 +38,12 @@ export function TextEntry() {
       <button
         type="button"
         className={classes['simplify-language-button']}
-        onClick={() => {}}
+        onClick={() => {
+          submitText(textEntered);
+        }}
         disabled={textEntered.length > 2000}
       >
-        Simplify Language
+        Score and Shorten
       </button>
       {textEntered.length > 2000 && (
         <p className={classes.invalid}>

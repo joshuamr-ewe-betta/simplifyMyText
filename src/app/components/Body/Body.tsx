@@ -1,18 +1,25 @@
+import { AiResponse } from './AiResponse/AiResponse';
 import classes from './Body.module.scss';
+import { Feedback } from './Feedback/Feedback';
+import { Score } from './Score/Score';
 import { TextBlock } from './TextBlock';
 
-export function Body() {
+export function Body({ aiResponse }: { aiResponse: string }) {
   return (
     <div className={classes.body}>
       <TextBlock
-        title="Simplified Language"
-        content="Simplify language above in order to receive your updated text."
+        title="Your Score"
+        content="A score of 1-10 is calculated to assess your brevity.  See FAQ's for details."
+        extraContent={aiResponse ? <Score /> : <></>}
       />
       <TextBlock
-        title="Your Score"
-        content="Simplify language above in order to receive your score."
+        title="Shortened Version"
+        content="See new suggested text here."
+        extraContent={
+          aiResponse ? <AiResponse aiResponse={aiResponse} /> : <></>
+        }
       />
-      <TextBlock title="About" content="Lots of good stuff." />
+      {aiResponse && <Feedback aiResponse={aiResponse} />}
       <TextBlock
         title="FAQ"
         subheader="Do you store any of my text or other data?"

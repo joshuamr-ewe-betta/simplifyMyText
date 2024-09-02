@@ -1,0 +1,10 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.feedback-select {
+    &-box {
+        margin-top: 0.5rem;
+        width: 300px;
+
+    }
+}

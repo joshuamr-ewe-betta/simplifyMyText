@@ -2,3 +2,14 @@
     width: 80%;
     max-width: 1200px;
 }
+
+@mixin quill {
+    & > *:first-child {
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+    }
+    & > *:last-child {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+}
