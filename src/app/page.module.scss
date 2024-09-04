@@ -32,15 +32,22 @@
     min-height: calc(100vh - 145px);
     position: absolute;
     display: none;
+    width: 100%;
+    padding: 1.5rem;
   
     @media  (max-width: 500px) {
-      font-size: 1.4rem;
       display: flex;
       align-items: center;
-      padding: 2rem;
+      background: white;
       min-height: calc(100vh - 145px);
-      background-color: white;
-      color: $primary-blue
+      justify-content: center;
+
+      &-content {
+        font-size: 1.4rem;
+        max-width: 80%;
+        background-color: white;
+        color: $primary-blue
+      }
     }
   }
 }

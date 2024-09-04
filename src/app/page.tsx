@@ -15,7 +15,9 @@ export default function Home() {
   return (
     <main className={classes.main}>
       <div className={classes['main-mobile-protection']}>
-        Brevity Check is not available on mobile devices
+        <div className={classes['main-mobile-protection-content']}>
+          Brevity Check is not available on mobile devices
+        </div>
       </div>
       <div className={classes['main-content']}>
         <TextEntry submitText={submitText} />

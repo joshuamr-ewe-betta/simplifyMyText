@@ -1,15 +1,25 @@
 @import 'src/styles/variables';
 
 .header {
-    padding: 1.5rem 0;
+    padding: 1.5rem 0rem;
     display: flex;
     width: 100vw;
-    justify-content: space-around;
+    justify-content: center;
     background-color: $header-white;
     align-items: center;
 
-    @media screen and (max-width: 1000px) {
+    
+    .nav {
+        width: 90%;
+        display: flex;
         justify-content: space-between;
+
+        @media screen and (max-width: 1200px) {
+            width: 80%;
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
         padding: 1.5rem 1rem;
     }
 }
