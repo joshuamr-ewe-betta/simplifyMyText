@@ -2,7 +2,7 @@ import { AiResponse } from './AiResponse/AiResponse';
 import classes from './Body.module.scss';
 import { Feedback } from './Feedback/Feedback';
 import { Score } from './Score/Score';
-import { TextBlock } from './TextBlock';
+import { TextBlock } from './TextBlock/TextBlock';
 
 export function Body({ aiResponse }: { aiResponse: string }) {
   return (
@@ -20,11 +20,6 @@ export function Body({ aiResponse }: { aiResponse: string }) {
         }
       />
       {aiResponse && <Feedback aiResponse={aiResponse} />}
-      <TextBlock
-        title="FAQ"
-        subheader="Do you store any of my text or other data?"
-        content="No, your data is not stored. It only present on our servers while processing, and then is discarded afterward."
-      />
     </div>
   );
 }

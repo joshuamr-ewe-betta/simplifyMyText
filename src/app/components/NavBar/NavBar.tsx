@@ -1,13 +1,22 @@
 'use client';
 import classes from './NavBar.module.scss';
+import Link from 'next/link';
 
 export function NavBar() {
   return (
     <div className={classes.header}>
       <div className={classes.nav}>
-        <h1 className={classes.title}>Brevity Check</h1>
+        <Link href="/">
+          <h1 className={classes.title}>Brevity Check</h1>
+        </Link>
+        {/* <button className={classes.root} type="button">
+          
+        </button> */}
         <nav>
           <ul className={classes.navigation}>
+            <li className={classes.link}>
+              <Link href="/faq">FAQ</Link>
+            </li>
             <li
               className={classes.link}
               onClick={() => {

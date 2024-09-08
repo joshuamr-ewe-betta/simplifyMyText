@@ -38,7 +38,6 @@ export function FeedbackSelect({ aiResponse }: { aiResponse: string }) {
         onChange={(
           optionChosen: { value: FeedbackScore; label: string } | null
         ) => {
-          console.log('optionChosen', optionChosen);
           setScoreSelected(optionChosen?.value || null);
         }}
         className={classes['feedback-select-box']}

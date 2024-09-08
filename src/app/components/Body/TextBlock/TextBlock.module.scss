@@ -6,16 +6,4 @@
     background-color: white;
     color: black;
     @include body-content;
-
-    &-title {
-        color: $primary-blue;
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    &-subheader {
-        font-weight: 700;
-    }
-
-
 }

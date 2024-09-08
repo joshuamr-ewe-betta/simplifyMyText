@@ -1,19 +1,9 @@
 @import 'src/styles/variables';
+@import 'src/styles/mixins';
 
 .main {
-  min-height: calc(100vh - 165px);
-  box-sizing: border-box;
-  font-size: 16px;
-  font-weight: 300;;
-  position: relative;
+  @include page;
 
-  @media  (max-width: 1000px) {
-    min-height: calc(100vh - 155px);
-  }
-
-  @media  (max-width: 700px) {
-    min-height: calc(100vh - 145px);
-  }
 
   &-content {
     display: flex;
@@ -29,26 +19,7 @@
   }
 
   &-mobile-protection {
-    min-height: calc(100vh - 145px);
-    position: absolute;
-    display: none;
-    width: 100%;
-    padding: 1.5rem;
-  
-    @media  (max-width: 500px) {
-      display: flex;
-      align-items: center;
-      background: white;
-      min-height: calc(100vh - 145px);
-      justify-content: center;
-
-      &-content {
-        font-size: 1.4rem;
-        max-width: 80%;
-        background-color: white;
-        color: $primary-blue
-      }
-    }
+    @include mobile-protection;
   }
 }
 

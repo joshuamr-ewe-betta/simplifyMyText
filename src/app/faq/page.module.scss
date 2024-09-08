@@ -1,0 +1,26 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.main {
+  @include page;
+  background-color: white;
+  color: black;
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;;
+  justify-content: center;
+
+  &-content {
+    width: 90%;
+
+    @media screen and (max-width: 1200px) {
+      width: 80%;
+  }
+  }
+
+  &-mobile-protection {
+    @include mobile-protection;
+  }
+
+
+}
