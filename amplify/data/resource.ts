@@ -1,5 +1,4 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
-import { FeedbackScore } from '../../types/feedbackScore';
 
 const schema = a.schema({
   SimplifiedVersion: a
@@ -9,7 +8,7 @@ const schema = a.schema({
       userEmailAddress: a.string().required(),
       createdAt: a.datetime().required(),
       simplifiedVersionFeedbackSubmissions: a.hasMany(
-        'SimplifiedVersionFeedbackSubmissions',
+        'SimplifiedVersionFeedbackSubmission',
         'simplifiedVersionId'
       ),
     })
@@ -22,9 +21,9 @@ const schema = a.schema({
     .model({
       simplifiedVersionId: a.id().required(),
       feedbackScore: a.enum([
-        FeedbackScore.NOT_HELPFUL,
-        FeedbackScore.SOMEWHAT_HELPFUL,
-        FeedbackScore.VERY_HELPFUL,
+        'NOT_HELPFUL',
+        'SOMEWHAT_HELPFUL',
+        'VERY_HELPFUL',
       ]),
       writtenFeedback: a.string(),
       updatedAt: a.datetime().required(),
