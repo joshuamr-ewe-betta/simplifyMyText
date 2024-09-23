@@ -9,9 +9,6 @@ export function NavBar() {
         <Link href="/">
           <h1 className={classes.title}>Brevity Check</h1>
         </Link>
-        {/* <button className={classes.root} type="button">
-          
-        </button> */}
         <nav>
           <ul className={classes.navigation}>
             <li className={classes.link}>

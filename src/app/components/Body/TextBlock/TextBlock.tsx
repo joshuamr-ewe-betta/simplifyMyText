@@ -9,7 +9,7 @@ export function TextBlock({
   extraContent,
 }: {
   title: string;
-  content: string;
+  content: string | ReactElement;
   extraContent?: ReactElement;
 }) {
   return (

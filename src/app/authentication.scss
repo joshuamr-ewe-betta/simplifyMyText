@@ -1,0 +1,30 @@
+@import 'src/styles/variables';
+
+div[data-amplify-authenticator] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 165px);
+}
+
+button.amplify-button--small {
+    color: var(--ion-color-primary)
+}
+
+button.amplify-tabs__item {
+    color: $primary-blue;
+}
+
+button.amplify-tabs__item--active {
+    border-color: $primary-blue;
+    color: $primary-blue;
+}
+
+button.amplify-tabs__item:hover{
+    color: $primary-blue;
+}
+
+
+button.amplify-button--primary {
+    background-color: $primary-blue;
+}

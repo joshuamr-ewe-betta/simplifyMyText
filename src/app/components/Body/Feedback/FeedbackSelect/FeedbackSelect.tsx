@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import classes from './FeedbackSelect.module.scss';
 
 import Select from 'react-select';
-
-enum FeedbackScore {
-  NOT_HELPFUL = 'NOT_HELPFUL',
-  SOMEWHAT_HELPFUL = 'SOMEWHAT_HELPFUL',
-  VERY_HELPFUL = 'VERY_HELPFUL',
-}
+import { FeedbackScore } from '../../../../../../types/feedbackScore';
 
 export function FeedbackSelect({ aiResponse }: { aiResponse: string }) {
   const [scoreSelected, setScoreSelected] = useState<FeedbackScore | null>(

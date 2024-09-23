@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AiResponse } from './AiResponse/AiResponse';
 import classes from './Body.module.scss';
 import { Feedback } from './Feedback/Feedback';
@@ -9,7 +10,15 @@ export function Body({ aiResponse }: { aiResponse: string }) {
     <div className={classes.body}>
       <TextBlock
         title="Your Score"
-        content="A score of 1-10 is calculated to assess your brevity.  See FAQ's for details."
+        content={
+          <span>
+            A score of 1-10 is calculated to assess your brevity. See{' '}
+            <Link href="/faq" className={classes.link}>
+              FAQ's
+            </Link>{' '}
+            for details.
+          </span>
+        }
         extraContent={aiResponse ? <Score /> : <></>}
       />
       <TextBlock
