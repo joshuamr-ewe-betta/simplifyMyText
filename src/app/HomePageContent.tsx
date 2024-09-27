@@ -3,15 +3,12 @@
 import { Body } from './components/Body/Body';
 import { TextEntry } from './components/TextEntry/TextEntry';
 import classes from './page.module.scss';
-import { Amplify } from 'aws-amplify';
-import outputs from '../../amplify_outputs.json';
+
 import '@aws-amplify/ui-react/styles.css';
 import './authentication.scss';
 
 import { useTextSubmission } from './contexts/textSubmissionContext';
 import { useSubmitText } from './useSubmitText';
-
-Amplify.configure(outputs);
 
 export default function HomePageContent() {
   const {
