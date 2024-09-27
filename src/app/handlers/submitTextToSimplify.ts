@@ -37,8 +37,7 @@ export async function submitTextToSimplify(
     ],
   });
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error .text does exist
   const simplifiedVersion = msg.content[0].text;
 
   return {

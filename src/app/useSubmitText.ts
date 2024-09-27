@@ -23,13 +23,11 @@ export function useSubmitText(): { submitText: () => Promise<void> } {
 
       const attributes = await fetchUserAttributes();
       const { email } = attributes;
-      console.log('email', email);
       const simplifiedVersionResponse = await createSimplifiedVersion({
         numberOfCharactersForOriginalVersion,
         numberOfCharactersForSimplifiedVersion,
         email: email || '',
       });
-      console.log('simplifiedVersionResponse', simplifiedVersionResponse);
 
       handleAiResponse(
         response.simplifiedVersion,
@@ -39,7 +37,6 @@ export function useSubmitText(): { submitText: () => Promise<void> } {
         },
         simplifiedVersionResponse?.id
       );
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {}
     handleChangeIsSubmittingText(false);
   };

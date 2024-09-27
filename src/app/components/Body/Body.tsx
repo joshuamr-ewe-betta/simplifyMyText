@@ -30,7 +30,7 @@ export function Body({
             <span>
               A score of 1-10 is calculated to assess your brevity. See{' '}
               <Link href="/faq" className={classes.link}>
-                FAQ's
+                FAQ&apos;s
               </Link>{' '}
               for details.
             </span>
