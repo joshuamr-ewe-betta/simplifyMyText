@@ -1,16 +1,20 @@
-'use client';
-import { useState } from 'react';
 import classes from './TextEntry.module.scss';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
 
 export function TextEntry({
   submitText,
+  inputText,
+  htmlEntered,
+  isSubmittingText,
 }: {
-  submitText: (newText: string) => void;
+  submitText: () => void;
+  inputText: (updatedText: string) => void;
+  htmlEntered: string;
+  isSubmittingText: boolean;
 }) {
-  const [textEntered, setTextEntered] = useState('');
   return (
     <div className={classes['text-entry']}>
       <div className={classes['text-entry-content']}>
@@ -22,30 +26,52 @@ export function TextEntry({
             type="button"
             className={classes['text-entry-button']}
             onClick={() => {
-              setTextEntered('');
+              inputText('');
             }}
           >
             Clear
           </button>
         </div>
         <QuillEditor
-          value={textEntered}
-          onChange={setTextEntered}
+          value={htmlEntered}
+          onChange={(content, delta, source, editor) => {
+            inputText(editor.getText().trim() ? content : '');
+          }}
           className={classes['text-entry-quill']}
         />
+        <ul className={classes.bullets}>
+          <li>
+            Makes written communication more concise, understandable,
+            translatable, and readable without impacting content or tone.
+          </li>
+          <li>
+            Uses hundreds of guidelines and examples so you don’t have to spend
+            time prompting AI to get what you need. There are weaknesses of
+            regular AI that Simplify My Text is trained to address.
+          </li>
+        </ul>
       </div>
 
       <button
         type="button"
         className={classes['simplify-language-button']}
         onClick={() => {
-          submitText(textEntered);
+          submitText();
         }}
-        disabled={textEntered.length > 2000}
+        disabled={
+          htmlEntered.length > 2000 || !htmlEntered.length || isSubmittingText
+        }
       >
-        Score and Shorten
+        {isSubmittingText ? (
+          <div className={classes.loading}>
+            <LoadingSpinner size={30} />
+            <span className={classes['loading-text']}>Simplifying...</span>
+          </div>
+        ) : (
+          'Score and Shorten'
+        )}
       </button>
-      {textEntered.length > 2000 && (
+      {htmlEntered.length > 2000 && (
         <p className={classes.invalid}>
           Please limit your input to less than 2000 characters
         </p>

@@ -4,31 +4,52 @@ import classes from './Body.module.scss';
 import { Feedback } from './Feedback/Feedback';
 import { Score } from './Score/Score';
 import { TextBlock } from './TextBlock/TextBlock';
+import { SimplificationData } from '../../contexts/textSubmissionContext';
 
-export function Body({ aiResponse }: { aiResponse: string }) {
+export function Body({
+  aiResponseHtml,
+  simplificationData,
+  simplifiedVersionId,
+}: {
+  aiResponseHtml: string | undefined;
+  simplificationData: SimplificationData | undefined;
+  simplifiedVersionId: string | undefined;
+}) {
   return (
     <div className={classes.body}>
-      <TextBlock
-        title="Your Score"
-        content={
-          <span>
-            A score of 1-10 is calculated to assess your brevity. See{' '}
-            <Link href="/faq" className={classes.link}>
-              FAQ's
-            </Link>{' '}
-            for details.
-          </span>
-        }
-        extraContent={aiResponse ? <Score /> : <></>}
-      />
-      <TextBlock
-        title="Shortened Version"
-        content="See new suggested text here."
-        extraContent={
-          aiResponse ? <AiResponse aiResponse={aiResponse} /> : <></>
-        }
-      />
-      {aiResponse && <Feedback aiResponse={aiResponse} />}
+      {simplificationData ? (
+        <TextBlock
+          title="Your Score"
+          content=""
+          extraContent={<Score simplificationData={simplificationData} />}
+        />
+      ) : (
+        <TextBlock
+          title="Your Score"
+          content={
+            <span>
+              A score of 1-10 is calculated to assess your brevity. See{' '}
+              <Link href="/faq" className={classes.link}>
+                FAQ's
+              </Link>{' '}
+              for details.
+            </span>
+          }
+        />
+      )}
+      {aiResponseHtml ? (
+        <TextBlock
+          title="Shortened Version"
+          content=""
+          extraContent={<AiResponse aiResponse={aiResponseHtml} />}
+        />
+      ) : (
+        <TextBlock
+          title="Shortened Version"
+          content="See new suggested text here."
+        />
+      )}
+      {simplifiedVersionId && <Feedback />}
     </div>
   );
 }

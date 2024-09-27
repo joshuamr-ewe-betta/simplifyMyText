@@ -7,7 +7,7 @@ export default function FAQ() {
     <main className={classes.main}>
       <div className={classes['main-mobile-protection']}>
         <div className={classes['main-mobile-protection-content']}>
-          Brevity Check is not available on mobile devices
+          Simplify My Text is not available on mobile devices
         </div>
       </div>
       <div className={classes['main-content']}>

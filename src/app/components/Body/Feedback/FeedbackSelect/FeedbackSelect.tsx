@@ -4,11 +4,46 @@ import classes from './FeedbackSelect.module.scss';
 
 import Select from 'react-select';
 import { FeedbackScore } from '../../../../../../types/feedbackScore';
+import { useTextSubmission } from '../../../../contexts/textSubmissionContext';
+import {
+  createSimplifiedVersionFeedbackSubmission,
+  updateSimplifiedVersionFeedbackSubmission,
+} from '../../../../dbMethods';
 
-export function FeedbackSelect({ aiResponse }: { aiResponse: string }) {
+export function FeedbackSelect() {
+  const {
+    simplifiedVersionId,
+    simplifiedVersionFeedbackSubmissionId,
+    onCreateFeedbackSubmission,
+  } = useTextSubmission();
+
   const [scoreSelected, setScoreSelected] = useState<FeedbackScore | null>(
     null
   );
+
+  const selectScore = async (updatedScore: FeedbackScore | null) => {
+    setScoreSelected(updatedScore);
+
+    if (simplifiedVersionId) {
+      if (simplifiedVersionFeedbackSubmissionId) {
+        await updateSimplifiedVersionFeedbackSubmission(
+          simplifiedVersionFeedbackSubmissionId,
+          { feedbackScore: updatedScore }
+        );
+      } else {
+        const newFeedbackSubmission =
+          await createSimplifiedVersionFeedbackSubmission({
+            simplifiedVersionId,
+            feedbackScore: updatedScore,
+          });
+
+        if (newFeedbackSubmission) {
+          onCreateFeedbackSubmission(newFeedbackSubmission.id);
+        }
+      }
+    }
+  };
+
   const options = [
     { value: FeedbackScore.VERY_HELPFUL, label: 'Very Helpful' },
     { value: FeedbackScore.SOMEWHAT_HELPFUL, label: 'Somewhat Helpful' },
@@ -17,7 +52,8 @@ export function FeedbackSelect({ aiResponse }: { aiResponse: string }) {
 
   useEffect(() => {
     setScoreSelected(null);
-  }, [aiResponse]);
+  }, [simplifiedVersionId]);
+
   const selectId = 'select-feedback-shortened-language';
   return (
     <div className={classes['feedback-select']}>
@@ -33,7 +69,7 @@ export function FeedbackSelect({ aiResponse }: { aiResponse: string }) {
         onChange={(
           optionChosen: { value: FeedbackScore; label: string } | null
         ) => {
-          setScoreSelected(optionChosen?.value || null);
+          selectScore(optionChosen?.value || null);
         }}
         className={classes['feedback-select-box']}
         placeholder="Choose Feedback"

@@ -11,3 +11,29 @@
 
     }
 }
+
+.submit-feedback {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: $primary-blue;
+    color: white;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+
+    &:disabled {
+        background-color: gray;
+        transform: scale(1.00);
+        cursor: not-allowed;
+    }
+}
+
+.gratitude {
+    font-weight: bold;
+    margin-left: 0.5rem;
+}

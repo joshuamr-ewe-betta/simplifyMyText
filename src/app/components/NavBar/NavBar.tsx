@@ -1,13 +1,14 @@
 'use client';
 import classes from './NavBar.module.scss';
 import Link from 'next/link';
+import { signOut } from 'aws-amplify/auth';
 
 export function NavBar() {
   return (
     <div className={classes.header}>
       <div className={classes.nav}>
         <Link href="/">
-          <h1 className={classes.title}>Brevity Check</h1>
+          <h1 className={classes.title}>Simplify My Text</h1>
         </Link>
         <nav>
           <ul className={classes.navigation}>
@@ -22,7 +23,16 @@ export function NavBar() {
             >
               Contact
             </li>
-            <li className={classes.link}>Logout</li>
+            <li className={classes.link}>
+              <button
+                className={classes.logout}
+                onClick={async () => {
+                  await signOut();
+                }}
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </nav>
       </div>

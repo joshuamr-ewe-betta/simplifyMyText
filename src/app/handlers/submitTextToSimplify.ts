@@ -1,22 +1,47 @@
 'use server';
 
-// import { generateClient } from 'aws-amplify/data';
-// import type { Schema } from '../../../amplify/data/resource';
-import Auth from '@aws-amplify/auth';
+import { promises as fs } from 'fs';
 
-// const client = generateClient<Schema>();
+import Anthropic from '@anthropic-ai/sdk';
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 export async function submitTextToSimplify(
-  textEntered: string
-): Promise<{ simplifiedVersionId: string; simplifiedVersion: string }> {
-  const attributes = await Auth.fetchUserAttributes();
+  htmlEntered: string
+): Promise<{ simplifiedVersion: string }> {
+  const system = await await fs.readFile(
+    process.cwd() + '/src/app/handlers/anthropicSystem.txt',
+    'utf8'
+  );
 
-  const { email } = attributes;
+  const msg = await anthropic.messages.create({
+    model: 'claude-3-5-sonnet-20240620',
+    max_tokens: 1000,
+    temperature: 0,
+    system,
 
-  console.log('textEntered', textEntered);
-  console.log('email', email);
+    messages: [
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'text',
+            text:
+              'Simplify this html using the system prompt, and returning the response in html.  Please only return the html of the simplified version: ' +
+              htmlEntered,
+          },
+        ],
+      },
+    ],
+  });
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const simplifiedVersion = msg.content[0].text;
+
   return {
-    simplifiedVersionId: '1',
-    simplifiedVersion: 'this is simpler',
+    simplifiedVersion,
   };
 }

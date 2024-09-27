@@ -6,14 +6,14 @@ const schema = a.schema({
       numberOfCharactersForOriginalVersion: a.integer().required(),
       numberOfCharactersForSimplifiedVersion: a.integer().required(),
       userEmailAddress: a.string().required(),
-      createdAt: a.datetime().required(),
+      updatedAt: a.datetime().required(),
       simplifiedVersionFeedbackSubmissions: a.hasMany(
         'SimplifiedVersionFeedbackSubmission',
         'simplifiedVersionId'
       ),
     })
     .secondaryIndexes((index) => [
-      index('userEmailAddress').sortKeys(['createdAt']),
+      index('userEmailAddress').sortKeys(['updatedAt']),
     ])
     .authorization((allow) => [allow.owner().to(['create', 'read', 'update'])]),
   // .authorization((allow) => [allow.guest()]),
@@ -25,8 +25,8 @@ const schema = a.schema({
         'SOMEWHAT_HELPFUL',
         'VERY_HELPFUL',
       ]),
-      writtenFeedback: a.string(),
       updatedAt: a.datetime().required(),
+      writtenFeedback: a.string(),
       simplifiedVersion: a.belongsTo(
         'SimplifiedVersion',
         'simplifiedVersionId'

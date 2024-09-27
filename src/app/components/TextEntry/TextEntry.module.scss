@@ -69,3 +69,18 @@
     margin-top: 0.5rem;
     color: red;
 }
+
+.loading {
+    display: flex;
+    align-items: center;
+
+    .loading-text {
+        margin-left: 1rem;
+    }
+}
+
+.bullets {
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 12px;
+}
