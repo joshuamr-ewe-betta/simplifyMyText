@@ -42,7 +42,7 @@ const schema = a.schema({
       answer: a.string(),
       displayOrder: a.integer(),
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [allow.guest()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
