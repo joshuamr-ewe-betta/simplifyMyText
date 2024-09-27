@@ -3,7 +3,7 @@
 import { promises as fs } from 'fs';
 
 import Anthropic from '@anthropic-ai/sdk';
-import anthropicSystemContent from './anthropicSystem.txt';
+import { anthropicSystemContent } from './anthropicSystem';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,

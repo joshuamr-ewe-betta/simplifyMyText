@@ -1,4 +1,4 @@
-# Brevity and Clarity API Instructions
+export const anthropicSystemContent = `# Brevity and Clarity API Instructions
 ## Purpose of Brevity and Clarity API
 This API is designed to enhance written communication by improving brevity, clarity, and inclusivity. It processes text by applying structured rules that reduce wordiness, simplify complex structures, and maintain the intended tone. The goal is to ensure messages are concise, clear, and respectful while keeping important context intact.
 The API operates through two primary phases:
@@ -594,7 +594,7 @@ The JSON format is structured as follows:
 - **Techniques Used**: A list of the specific techniques applied in the simplification process, such as removing redundant phrases, using bullet points, or simplifying complex language.
 These examples will serve as a reference for the API, ensuring that the simplifications made are consistent with the guidelines provided in the previous sections.
 ### Example Format (JSON)
-```json
+
 {
 "number": 1,
 "original": {
@@ -3245,3 +3245,4 @@ These examples will serve as a reference for the API, ensuring that the simplifi
 ]
 }
 
+`;
