@@ -1,13 +1,14 @@
 /* eslint-disable no-empty */
-import { useTextSubmission } from './contexts/textSubmissionContext';
-import { createSimplifiedVersion } from './dbMethods';
-import { submitTextToSimplify } from './handlers/submitTextToSimplify';
-import { getTextLengthForHtml } from './utils.ts/getTextLengthForHtml';
+import { useTextSubmission } from '../contexts/textSubmissionContext';
+import { createSimplifiedVersion } from '../dbMethods';
+import { submitTextToSimplify } from '../handlers/submitTextToSimplify';
+import { getTextLengthForHtml } from '../utils.ts/getTextLengthForHtml';
 import { fetchUserAttributes } from '@aws-amplify/auth';
 
 export function useSubmitText(): { submitText: () => Promise<void> } {
   const { handleAiResponse, htmlEntered, handleChangeIsSubmittingText } =
     useTextSubmission();
+
   const submitText = async () => {
     handleChangeIsSubmittingText(true);
 

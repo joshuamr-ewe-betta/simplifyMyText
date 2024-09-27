@@ -8,7 +8,7 @@ import '@aws-amplify/ui-react/styles.css';
 import './authentication.scss';
 
 import { useTextSubmission } from './contexts/textSubmissionContext';
-import { useSubmitText } from './useSubmitText';
+import { useSubmitText } from './hooks/useSubmitText';
 
 export default function HomePageContent() {
   const {

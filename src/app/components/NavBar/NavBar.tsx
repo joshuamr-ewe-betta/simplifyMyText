@@ -2,8 +2,10 @@
 import classes from './NavBar.module.scss';
 import Link from 'next/link';
 import { signOut } from 'aws-amplify/auth';
+import { useUser } from '../../hooks/useUser';
 
 export function NavBar() {
+  const { user } = useUser();
   return (
     <div className={classes.header}>
       <div className={classes.nav}>
@@ -23,16 +25,18 @@ export function NavBar() {
             >
               Contact
             </li>
-            <li className={classes.link}>
-              <button
-                className={classes.logout}
-                onClick={async () => {
-                  await signOut();
-                }}
-              >
-                Logout
-              </button>
-            </li>
+            {user && (
+              <li className={classes.link}>
+                <button
+                  className={classes.logout}
+                  onClick={async () => {
+                    await signOut();
+                  }}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
