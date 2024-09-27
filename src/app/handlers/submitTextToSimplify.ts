@@ -10,7 +10,6 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
-  console.log('process.env.ANTHROPIC_API_KEY', process.env.ANTHROPIC_API_KEY);
   const msg = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-20240620',
     max_tokens: 1000,

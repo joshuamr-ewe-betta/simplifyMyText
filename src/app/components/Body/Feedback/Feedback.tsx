@@ -19,13 +19,14 @@ export function Feedback() {
     simplifiedVersionFeedbackSubmissionId,
     onCreateFeedbackSubmission,
     resetSimplifiedVersionFeedbackSubmissionId,
+    feedbackScoreSelected,
   } = useTextSubmission();
 
   const updateWrittenFeedback = (updatedFeedback: string) => {
     setWrittenFeedback(updatedFeedback);
-    setWasFeedbackSubmitted(false);
-    if (simplifiedVersionFeedbackSubmissionId) {
+    if (wasFeedbackSubmitted) {
       resetSimplifiedVersionFeedbackSubmissionId();
+      setWasFeedbackSubmitted(false);
     }
   };
 
@@ -34,13 +35,17 @@ export function Feedback() {
       if (simplifiedVersionFeedbackSubmissionId) {
         await updateSimplifiedVersionFeedbackSubmission(
           simplifiedVersionFeedbackSubmissionId,
-          { writtenFeedback: writtenFeedback.trim() }
+          {
+            writtenFeedback: writtenFeedback.trim(),
+            feedbackScore: feedbackScoreSelected,
+          }
         );
       } else {
         const newFeedbackSubmission =
           await createSimplifiedVersionFeedbackSubmission({
             simplifiedVersionId,
             writtenFeedback,
+            feedbackScore: feedbackScoreSelected,
           });
 
         if (newFeedbackSubmission) {

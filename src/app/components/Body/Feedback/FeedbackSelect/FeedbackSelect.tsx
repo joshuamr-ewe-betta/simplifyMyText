@@ -15,14 +15,11 @@ export function FeedbackSelect() {
     simplifiedVersionId,
     simplifiedVersionFeedbackSubmissionId,
     onCreateFeedbackSubmission,
+    handleChangeFeedbackScoreSelected,
   } = useTextSubmission();
 
-  const [scoreSelected, setScoreSelected] = useState<FeedbackScore | null>(
-    null
-  );
-
   const selectScore = async (updatedScore: FeedbackScore | null) => {
-    setScoreSelected(updatedScore);
+    handleChangeFeedbackScoreSelected(updatedScore);
 
     if (simplifiedVersionId) {
       if (simplifiedVersionFeedbackSubmissionId) {
@@ -50,21 +47,18 @@ export function FeedbackSelect() {
     { value: FeedbackScore.NOT_HELPFUL, label: 'Not Helpful' },
   ];
 
+  const selectId = 'select-feedback-simplified-language';
+
   useEffect(() => {
-    setScoreSelected(null);
+    handleChangeFeedbackScoreSelected(null);
   }, [simplifiedVersionId]);
 
-  const selectId = 'select-feedback-simplified-language';
   return (
     <div className={classes['feedback-select']}>
       <label htmlFor={selectId}>
         What do you think of the simplified version?
       </label>
       <Select
-        value={
-          scoreSelected &&
-          options.find((option) => option.value === scoreSelected)
-        }
         options={options}
         onChange={(
           optionChosen: { value: FeedbackScore; label: string } | null

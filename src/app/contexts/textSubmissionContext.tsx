@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { FeedbackScore } from '../../../types/feedbackScore';
 
 export interface SimplificationData {
   numberOfCharactersForSimplifiedVersion: number;
@@ -22,6 +23,10 @@ const TextSubmissionContext = createContext<
       simplifiedVersionFeedbackSubmissionId: string | undefined;
       onCreateFeedbackSubmission: (newFeedbackSubmissionId: string) => void;
       resetSimplifiedVersionFeedbackSubmissionId: () => void;
+      handleChangeFeedbackScoreSelected: (
+        updatedFeedbackScore: FeedbackScore | null
+      ) => void;
+      feedbackScoreSelected: FeedbackScore | null;
     }
   | undefined
 >(undefined);
@@ -41,8 +46,17 @@ export function TextSubmissionProvider({ children }: React.PropsWithChildren) {
     setSimplifiedVersionFeedbackSubmissionId,
   ] = useState<string | undefined>();
 
+  const [feedbackScoreSelected, setFeedbackScoreSelected] =
+    useState<FeedbackScore | null>(null);
+
   const handleChangeIsSubmittingText = (isSubmitting: boolean) => {
     setIsSubmittingText(isSubmitting);
+  };
+
+  const handleChangeFeedbackScoreSelected = (
+    updatedFeedbackScore: FeedbackScore | null
+  ) => {
+    setFeedbackScoreSelected(updatedFeedbackScore);
   };
 
   const onCreateFeedbackSubmission = (newFeedbackSubmissionId: string) => {
@@ -86,6 +100,8 @@ export function TextSubmissionProvider({ children }: React.PropsWithChildren) {
     simplifiedVersionFeedbackSubmissionId,
     onCreateFeedbackSubmission,
     resetSimplifiedVersionFeedbackSubmissionId,
+    feedbackScoreSelected,
+    handleChangeFeedbackScoreSelected,
   };
   return (
     <TextSubmissionContext.Provider value={value}>
