@@ -43,7 +43,7 @@ export function Score({
   return (
     <div className={classes.score}>
       <div className={classes['score-out-of-ten']}>{score} / 10</div>
-      <p>The shortened version reduced your text by {reduction}%.</p>
+      <p>The simplified version reduced your text by {reduction}%.</p>
     </div>
   );
 }

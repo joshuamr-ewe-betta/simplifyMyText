@@ -39,17 +39,12 @@ export function TextEntry({
           }}
           className={classes['text-entry-quill']}
         />
-        <ul className={classes.bullets}>
-          <li>
-            Makes written communication more concise, understandable,
-            translatable, and readable without impacting content or tone.
-          </li>
-          <li>
-            Uses hundreds of guidelines and examples so you don’t have to spend
-            time prompting AI to get what you need. There are weaknesses of
-            regular AI that Simplify My Text is trained to address.
-          </li>
-        </ul>
+
+        {htmlEntered.length > 2000 && (
+          <p className={classes.invalid}>
+            Please limit your input to less than 2000 characters
+          </p>
+        )}
       </div>
 
       <button
@@ -71,11 +66,21 @@ export function TextEntry({
           'Score and Shorten'
         )}
       </button>
-      {htmlEntered.length > 2000 && (
-        <p className={classes.invalid}>
-          Please limit your input to less than 2000 characters
-        </p>
-      )}
+      <div className={classes.info}>
+        <p className={classes['info-title']}>Simplified Language</p>
+        <ul className={classes.bullets}>
+          <li>
+            Makes written communication more concise, understandable,
+            translatable, and readable without impacting content or tone.
+          </li>
+          <li>
+            Uses hundreds of guidelines and examples so you don’t have to spend
+            time prompting AI to get what you need. There are weaknesses of
+            regular AI that Simplify My Text is trained to address.
+          </li>
+        </ul>
+      </div>
+
       <p className={classes.disclaimer}>
         Your text is not stored, and is discarded after processing.
       </p>

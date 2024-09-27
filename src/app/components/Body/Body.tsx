@@ -39,13 +39,13 @@ export function Body({
       )}
       {aiResponseHtml ? (
         <TextBlock
-          title="Shortened Version"
+          title="Simplified Version"
           content=""
           extraContent={<AiResponse aiResponse={aiResponseHtml} />}
         />
       ) : (
         <TextBlock
-          title="Shortened Version"
+          title="Simplified Version"
           content="See new suggested text here."
         />
       )}

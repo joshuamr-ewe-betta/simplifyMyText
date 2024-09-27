@@ -54,11 +54,11 @@ export function FeedbackSelect() {
     setScoreSelected(null);
   }, [simplifiedVersionId]);
 
-  const selectId = 'select-feedback-shortened-language';
+  const selectId = 'select-feedback-simplified-language';
   return (
     <div className={classes['feedback-select']}>
       <label htmlFor={selectId}>
-        What do you think of the shortened version?
+        What do you think of the simplified version?
       </label>
       <Select
         value={

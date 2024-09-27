@@ -79,6 +79,13 @@
     }
 }
 
+.info {
+    margin-top: 1rem;
+    font-size: 12px;;
+    color: white;
+    @include body-content;
+}
+
 .bullets {
     color: white;
     padding: 1rem 2rem;

@@ -3,6 +3,7 @@
 import { promises as fs } from 'fs';
 
 import Anthropic from '@anthropic-ai/sdk';
+import anthropicSystemContent from './anthropicSystem.txt';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -11,16 +12,11 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
-  const system = await await fs.readFile(
-    process.cwd() + '/src/app/handlers/anthropicSystem.txt',
-    'utf8'
-  );
-
   const msg = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-20240620',
     max_tokens: 1000,
     temperature: 0,
-    system,
+    system: anthropicSystemContent,
 
     messages: [
       {

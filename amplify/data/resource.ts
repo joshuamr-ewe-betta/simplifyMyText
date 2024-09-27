@@ -36,6 +36,13 @@ const schema = a.schema({
       index('feedbackScore').sortKeys(['updatedAt']),
     ])
     .authorization((allow) => [allow.owner().to(['create', 'read', 'update'])]),
+  FrequentlyAskedQuestion: a
+    .model({
+      question: a.string(),
+      answer: a.string(),
+      displayOrder: a.integer(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
