@@ -2,7 +2,6 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { Amplify } from 'aws-amplify';
-import { anthropicSystemContent } from './anthropicSystem';
 import outputs from '@/amplify_outputs.json';
 Amplify.configure(outputs);
 
@@ -20,13 +19,13 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
-  // const response = await client.models.AnthropicSystemPrompt.list();
-  // const system = response.data?.[0].systemPrompt;
+  const response = await client.models.AnthropicSystemPrompt.list();
+  const system = response.data?.[0]?.systemPrompt || '';
   const msg = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-20240620',
     max_tokens: 1000,
     temperature: 0,
-    system: anthropicSystemContent,
+    system,
 
     messages: [
       {
