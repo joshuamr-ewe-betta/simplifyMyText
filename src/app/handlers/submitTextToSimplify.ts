@@ -1,7 +1,17 @@
 'use server';
 
 import Anthropic from '@anthropic-ai/sdk';
+import { Amplify } from 'aws-amplify';
 import { anthropicSystemContent } from './anthropicSystem';
+import outputs from '@/amplify_outputs.json';
+Amplify.configure(outputs);
+
+import { generateClient } from 'aws-amplify/data';
+import { Schema } from '../../../amplify/data/resource';
+
+const client = generateClient<Schema>({
+  authMode: 'apiKey',
+});
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -10,6 +20,8 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
+  // const response = await client.models.AnthropicSystemPrompt.list();
+  // const system = response.data?.[0].systemPrompt;
   const msg = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-20240620',
     max_tokens: 1000,

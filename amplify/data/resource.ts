@@ -43,6 +43,11 @@ const schema = a.schema({
       displayOrder: a.integer(),
     })
     .authorization((allow) => [allow.guest()]),
+  AnthropicSystemPrompt: a
+    .model({
+      systemPrompt: a.string(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -51,6 +56,7 @@ export const data = defineData({
   schema,
   authorizationModes: {
     defaultAuthorizationMode: 'iam',
+    apiKeyAuthorizationMode: { description: 'serverSideAuth' },
   },
 });
 
