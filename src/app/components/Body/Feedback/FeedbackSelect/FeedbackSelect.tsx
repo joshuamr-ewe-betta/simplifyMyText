@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import classes from './FeedbackSelect.module.scss';
 
 import Select from 'react-select';
@@ -16,6 +16,7 @@ export function FeedbackSelect() {
     simplifiedVersionFeedbackSubmissionId,
     onCreateFeedbackSubmission,
     handleChangeFeedbackScoreSelected,
+    feedbackScoreSelected,
   } = useTextSubmission();
 
   const selectScore = async (updatedScore: FeedbackScore | null) => {
@@ -59,6 +60,7 @@ export function FeedbackSelect() {
         What do you think of the simplified version?
       </label>
       <Select
+        value={options.find((option) => option.value === feedbackScoreSelected)}
         options={options}
         onChange={(
           optionChosen: { value: FeedbackScore; label: string } | null

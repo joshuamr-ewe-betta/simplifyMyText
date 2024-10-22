@@ -7,6 +7,7 @@ Amplify.configure(outputs);
 
 import { generateClient } from 'aws-amplify/data';
 import { Schema } from '../../../amplify/data/resource';
+import { system, message1 } from './simplifyPrompt';
 
 const client = generateClient<Schema>({
   authMode: 'apiKey',
@@ -19,8 +20,6 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
-  const response = await client.models.AnthropicSystemPrompt.list();
-  const system = response.data?.[0]?.systemPrompt || '';
   const msg = await anthropic.messages.create({
     model: 'claude-3-5-sonnet-20240620',
     max_tokens: 1000,
@@ -31,6 +30,7 @@ export async function submitTextToSimplify(
       {
         role: 'user',
         content: [
+          message1,
           {
             type: 'text',
             text:
