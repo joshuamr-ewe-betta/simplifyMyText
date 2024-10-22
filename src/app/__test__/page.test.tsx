@@ -31,8 +31,7 @@ jest.mock('@anthropic-ai/sdk', () => {
 const textInputId = 'textInputId';
 
 jest.mock('react-quill', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return jest.fn().mockImplementation((props: any) => (
+  return jest.fn().mockImplementation((props) => (
     <textarea
       {...props}
       onChange={(event) => props.onChange(event.target.value)}
