@@ -1,7 +1,10 @@
 import { TextBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs';
 
 /* eslint-disable no-useless-escape */
-export const system = `# Brevity and Clarity API Instructions\n\n## PURPOSE\nYou&#39;re an agent whose goal is to
+export const system = [
+  {
+    type: 'text',
+    text: `# Brevity and Clarity API Instructions\n\n## PURPOSE\nYou&#39;re an agent whose goal is to
     simplify the language of text and to improve brevity, clarity, readability, translatability, and inclusivity.
     You will reduce wordiness, simplify complex structures, simplify words, and preserve essential
     information and the intended tone. You will make writing easier to translate and easier to scan for
@@ -81,9 +84,12 @@ export const system = `# Brevity and Clarity API Instructions\n\n## PURPOSE\nYou
     **Avoiding repetition and overuse of bullet points.**\n- **Preserving the tone and friendliness of the
     original text.**\n- **Recognizing when to keep qualifiers in sensitive contexts.**\n- **Using inviting
     language to encourage participation.**\n- **Ensuring the use of inclusive, people-first language.**\n-
-    **Avoiding idioms, metaphors, and phrasal verbs for better translation.**\n"`;
+    **Avoiding idioms, metaphors, and phrasal verbs for better translation.**\n"`,
+    cache_control: { type: 'ephemeral' },
+  },
+];
 
-export const message1: TextBlockParam = {
+export const message1 = {
   type: 'text',
   text: `<examples>\n<example>\n<Clarity>\nWe assist families in low-income
     neighborhoods.\n</Clarity>\n<ideal_output>\nWe assist families in low-income
@@ -651,4 +657,5 @@ export const message1: TextBlockParam = {
     important CCC-related legislation passed during the 2023 legislative session:
     \n</ideal_output>\n</example>\n</examples>\n\n"
     },`,
+  cache_control: { type: 'ephemeral' },
 };

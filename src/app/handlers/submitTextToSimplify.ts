@@ -20,12 +20,11 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
-  const msg = await anthropic.messages.create({
+  // @ts-expect-error the types are correct
+  const msg = await anthropic.beta.promptCaching.messages.create({
     model: 'claude-3-5-sonnet-20240620',
-    max_tokens: 1000,
-    temperature: 0,
+    max_tokens: 1024,
     system,
-
     messages: [
       {
         role: 'user',
