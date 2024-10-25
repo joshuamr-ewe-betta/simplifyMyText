@@ -1,6 +1,9 @@
 import sanitizeHtml from 'sanitize-html';
 
-export function getTextLengthForHtml(htmlString: string): number {
+export function getDataForHtml(htmlString: string): {
+  length: number;
+  text: string;
+} {
   const tag = document.createElement('div');
   tag.style.position = 'absolute';
   tag.style.left = '-99in';
@@ -12,5 +15,5 @@ export function getTextLengthForHtml(htmlString: string): number {
   const result = tag.innerText;
   const resultSplit = result.split(/\s+/);
   document.body.removeChild(tag);
-  return resultSplit.join(' ').length;
+  return { length: resultSplit.join(' ').length, text: result };
 }

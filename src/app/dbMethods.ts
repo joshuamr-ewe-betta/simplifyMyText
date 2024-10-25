@@ -39,10 +39,14 @@ interface SimplifiedVersionFeedbackSubmissionCreationParams {
 export async function createSimplifiedVersion({
   numberOfCharactersForOriginalVersion,
   numberOfCharactersForSimplifiedVersion,
+  simplifiedVersion,
+  originalVersion,
   email,
 }: {
   numberOfCharactersForOriginalVersion: number;
   numberOfCharactersForSimplifiedVersion: number;
+  simplifiedVersion: string;
+  originalVersion: string;
   email: string;
 }): Promise<SimplifiedVersion | undefined> {
   const response = await client.models.SimplifiedVersion.create(
@@ -51,6 +55,8 @@ export async function createSimplifiedVersion({
       updatedAt: new Date().toISOString(),
       numberOfCharactersForOriginalVersion,
       numberOfCharactersForSimplifiedVersion,
+      simplifiedVersion,
+      originalVersion,
     },
     {
       authMode: 'userPool',

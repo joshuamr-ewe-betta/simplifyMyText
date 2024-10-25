@@ -5,6 +5,8 @@ const schema = a.schema({
     .model({
       numberOfCharactersForOriginalVersion: a.integer().required(),
       numberOfCharactersForSimplifiedVersion: a.integer().required(),
+      originalVersion: a.string(),
+      simplifiedVersion: a.string(),
       userEmailAddress: a.string().required(),
       updatedAt: a.datetime().required(),
       simplifiedVersionFeedbackSubmissions: a.hasMany(

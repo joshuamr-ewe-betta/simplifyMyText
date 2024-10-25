@@ -2,7 +2,7 @@
 import { useTextSubmission } from '../contexts/textSubmissionContext';
 import { createSimplifiedVersion } from '../dbMethods';
 import { submitTextToSimplify } from '../handlers/submitTextToSimplify';
-import { getTextLengthForHtml } from '../utils.ts/getTextLengthForHtml';
+import { getDataForHtml } from '../utils.ts/getTextLengthForHtml';
 import { fetchUserAttributes } from '@aws-amplify/auth';
 
 export function useSubmitText(): { submitText: () => Promise<void> } {
@@ -15,16 +15,21 @@ export function useSubmitText(): { submitText: () => Promise<void> } {
     try {
       const response = await submitTextToSimplify(htmlEntered);
 
-      const numberOfCharactersForSimplifiedVersion = getTextLengthForHtml(
-        response.simplifiedVersion
-      );
+      const {
+        length: numberOfCharactersForSimplifiedVersion,
+        text: simplifiedVersion,
+      } = getDataForHtml(response.simplifiedVersion);
 
-      const numberOfCharactersForOriginalVersion =
-        getTextLengthForHtml(htmlEntered);
+      const {
+        length: numberOfCharactersForOriginalVersion,
+        text: originalVersion,
+      } = getDataForHtml(htmlEntered);
 
       const attributes = await fetchUserAttributes();
       const { email } = attributes;
       const simplifiedVersionResponse = await createSimplifiedVersion({
+        simplifiedVersion,
+        originalVersion,
         numberOfCharactersForOriginalVersion,
         numberOfCharactersForSimplifiedVersion,
         email: email || '',

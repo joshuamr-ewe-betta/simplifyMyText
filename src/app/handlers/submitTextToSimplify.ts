@@ -43,6 +43,7 @@ export async function submitTextToSimplify(
 
   // @ts-expect-error .text does exist
   const simplifiedVersion = msg.content[0].text;
+  console.log('simplifiedVersion', simplifiedVersion);
 
   return {
     simplifiedVersion,
