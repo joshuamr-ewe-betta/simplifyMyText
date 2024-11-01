@@ -33,7 +33,7 @@ export async function submitTextToSimplify(
           {
             type: 'text',
             text:
-              'Simplify this html using the system prompt, and returning the response in html.  Please only return the html of the simplified version: ' +
+              'Simplify this html using the system prompt, and returning the response in html.  Please only return the html of the simplified version.  Please make sure all bullet points in the response are formatted as html: ' +
               htmlEntered,
           },
         ],
