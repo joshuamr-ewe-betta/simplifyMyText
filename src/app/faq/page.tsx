@@ -13,9 +13,10 @@ export default function FAQ() {
       <div className={classes['main-content']}>
         <TextBlockTitle title="FAQ" />
         <Faq
-          question="How are scores calculated?"
-          answer="According to how much text is removed, without removing important content or significantly changing the tone. If it removes less than 5% of text, score = 10. 10-15% reduction = 8. 20-29% = 6. 40-49%= 4, and so on."
+          question="What is the brevity score?"
+          answer="The score is calculated according to how many characters are removed, without removing important content or significantly changing the tone. If it removes less than 10% of text, score = 10. 20-29% reduction = 8. 40-49% = 6. 60-69%= 4, and so on. You should aim for a score of 9-10."
         />
+
         <Faq
           question="Why is this free?"
           answer="It’s in testing mode. It won’t be free for long! But it will be reasonably priced and accessible to all."
@@ -23,14 +24,6 @@ export default function FAQ() {
         <Faq
           question="How is this different from regular AI tools like ChatGPT?"
           answer="It’s more user friendly, consistent, and provides a score you can compare to other organizations or departments. We provided very specific criteria and thousands of real-life examples. Some suggestions you receive may be similar to what you’d receive from ChatGPT, and some will be significantly better 😊."
-        />
-        <Faq
-          question="Do you store the text I enter to shorten?"
-          answer="No, we just store the # of characters in your data and your feedback."
-        />
-        <Faq
-          question="Does it only focus on brevity?"
-          answer="For now, yes because shortening text is an enormous need for most institutions and it’s easy to do and score. We are building the tool to also suggest ways to simplify vocabulary, readability, and translatability."
         />
         <Faq
           question="Who are you and what else do you do?"

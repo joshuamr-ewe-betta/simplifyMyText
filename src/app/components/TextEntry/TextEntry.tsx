@@ -63,7 +63,7 @@ export function TextEntry({
             <span className={classes['loading-text']}>Simplifying...</span>
           </div>
         ) : (
-          'Score and Shorten'
+          'Score and Simplify'
         )}
       </button>
       <div className={classes.info}>
@@ -74,9 +74,13 @@ export function TextEntry({
             translatable, and readable without impacting content or tone.
           </li>
           <li>
-            Uses hundreds of guidelines and examples so you don’t have to spend
-            time prompting AI to get what you need. There are weaknesses of
-            regular AI that Simplify My Text is trained to address.
+            Addresses common weaknesses that regular AI has when simplifying
+            text.
+          </li>
+          <li>
+            Uses hundreds of guidelines and examples so you spend less time
+            getting what you need. You still need to add a human touch, but
+            hopefully less human touch with this!
           </li>
         </ul>
       </div>
