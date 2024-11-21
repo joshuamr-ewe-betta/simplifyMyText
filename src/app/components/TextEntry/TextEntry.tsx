@@ -67,7 +67,7 @@ export function TextEntry({
         )}
       </button>
       <div className={classes.info}>
-        <p className={classes['info-title']}>Simplified Language</p>
+        <p className={classes['info-title']}>Simplify My Text</p>
         <ul className={classes.bullets}>
           <li>
             Makes written communication more concise, understandable,
@@ -84,10 +84,6 @@ export function TextEntry({
           </li>
         </ul>
       </div>
-
-      <p className={classes.disclaimer}>
-        Your text is not stored, and is discarded after processing.
-      </p>
     </div>
   );
 }
