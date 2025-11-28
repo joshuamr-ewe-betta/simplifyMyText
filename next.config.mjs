@@ -18,6 +18,16 @@ const nextConfig = {
       '@': path.resolve(__dirname),
     };
 
+    // Handle AWS SDK modules properly
+    if (isServer) {
+      config.externals = config.externals || [];
+      config.externals.push({
+        '@aws-sdk': '@aws-sdk',
+        '@smithy': '@smithy',
+        '@aws-crypto': '@aws-crypto',
+      });
+    }
+
     return config;
   },
 };

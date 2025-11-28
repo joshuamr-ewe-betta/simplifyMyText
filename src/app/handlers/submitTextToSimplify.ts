@@ -1,10 +1,6 @@
 'use server';
 
 import Anthropic from '@anthropic-ai/sdk';
-import { Amplify } from 'aws-amplify';
-import outputs from '@/amplify_outputs.json';
-Amplify.configure(outputs);
-
 import { system, message1 } from './simplifyPrompt';
 
 const anthropic = new Anthropic({
