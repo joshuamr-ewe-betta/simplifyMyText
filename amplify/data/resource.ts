@@ -58,7 +58,7 @@ export const data = defineData({
   schema,
   authorizationModes: {
     defaultAuthorizationMode: 'iam',
-    apiKeyAuthorizationMode: { description: 'serverSideAuth' },
+    apiKeyAuthorizationMode: { description: 'serverSideAuth-v2' },
   },
 });
 
