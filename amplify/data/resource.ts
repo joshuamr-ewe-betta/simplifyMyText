@@ -49,7 +49,7 @@ const schema = a.schema({
     .model({
       systemPrompt: a.string(),
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [allow.guest()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -58,7 +58,8 @@ export const data = defineData({
   schema,
   authorizationModes: {
     defaultAuthorizationMode: 'iam',
-    apiKeyAuthorizationMode: { description: 'serverSideAuth-v2' },
+    // Temporarily removed API key to force CloudFormation to delete the orphaned resource
+    // apiKeyAuthorizationMode: { description: 'serverSideAuth-v2' },
   },
 });
 
