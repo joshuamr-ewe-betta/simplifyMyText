@@ -5,13 +5,7 @@ import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 Amplify.configure(outputs);
 
-import { generateClient } from 'aws-amplify/data';
-import { Schema } from '../../../amplify/data/resource';
 import { system, message1 } from './simplifyPrompt';
-
-const client = generateClient<Schema>({
-  authMode: 'apiKey',
-});
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -20,9 +14,10 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
+  console.log('htmlEntered', htmlEntered);
   // @ts-expect-error the types are correct
-  const msg = await anthropic.beta.promptCaching.messages.create({
-    model: 'claude-3-5-sonnet-20240620',
+  const msg = await anthropic.messages.create({
+    model: 'claude-sonnet-4-5-20250929',
     max_tokens: 1024,
     system,
     messages: [
@@ -40,6 +35,7 @@ export async function submitTextToSimplify(
       },
     ],
   });
+  console.log('msg', msg);
 
   // @ts-expect-error .text does exist
   const simplifiedVersion = msg.content[0].text;
