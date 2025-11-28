@@ -14,7 +14,6 @@ const anthropic = new Anthropic({
 export async function submitTextToSimplify(
   htmlEntered: string
 ): Promise<{ simplifiedVersion: string }> {
-  console.log('htmlEntered', htmlEntered);
   // @ts-expect-error the types are correct
   const msg = await anthropic.messages.create({
     model: 'claude-sonnet-4-5-20250929',
@@ -35,7 +34,6 @@ export async function submitTextToSimplify(
       },
     ],
   });
-  console.log('msg', msg);
 
   // @ts-expect-error .text does exist
   const simplifiedVersion = msg.content[0].text;
